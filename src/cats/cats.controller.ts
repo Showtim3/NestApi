@@ -31,3 +31,14 @@ export class  CatsController {
     this.catService.remove(params.id);
   }
 }
+
+@Controller('/cats2')
+export class CatsController2 {
+  constructor(private readonly catService2: CatsService) {}
+
+  @Get()
+  async findAll(): Promise<string[]> {
+    return this.catService2.findAll();
+  }
+
+}
