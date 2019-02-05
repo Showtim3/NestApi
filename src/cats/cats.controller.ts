@@ -1,5 +1,6 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { CatsService } from './cats.service';
+import { ParseIntPipeCreated } from './parse-int.pipe';
 
 @Controller('/cats')
 export class  CatsController {
@@ -17,8 +18,8 @@ export class  CatsController {
   }
 
    @Get(':id')
-  async findOne(@Param() params) {
-    return this.catService.findOne(params.id);
+  async findOne(@Param('id', new ParseIntPipeCreated()) id) {
+    return this.catService.findOne(id);
   }
 
   @Put(':id')
